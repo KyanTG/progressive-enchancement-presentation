@@ -1,9 +1,3 @@
-// ─── Section 1: Filter — progressive enhancement ───
-// Baseline (no JS): a <select> category filter. CSS :has() filters the list,
-// the submit button submits the form.
-// Enhancement (JS): we remove the submit button, add a free-text search input
-// next to the select, and use fetch() to pull a richer dataset.
-
 const form = document.querySelector('.filter-form');
 const results = document.getElementById('results');
 
@@ -13,7 +7,6 @@ if (form && results) {
 
 	const select = form.querySelector('select[name="category"]');
 
-	// Add a text search input as a pure JS enhancement
 	const searchWrap = document.createElement('label');
 	searchWrap.className = 'search-label';
 	searchWrap.innerHTML = `
@@ -60,15 +53,9 @@ if (form && results) {
 			: '<li class="empty">No matches</li>';
 	}
 
-	// Run once to load the richer dataset into the page on load
 	update();
 }
 
-
-// ─── Section 3: Carousel — JS fallback for older browsers ───
-// The carousel's prev/next/dots are pure CSS (::scroll-button, ::scroll-marker).
-// These JS buttons only do anything in browsers that don't support those
-// pseudo-elements — @supports hides them when the native CSS path is available.
 
 const carousel = document.querySelector('.carousel');
 const jsPrev = document.querySelector('.js-prev');

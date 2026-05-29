@@ -39,6 +39,25 @@
 						<p>Animaties, live filtering en dark mode — alleen waar ondersteund.</p>
 					</article>
 				</div>
+
+				<div class="intro-why">
+					<h3>Waarom dit belangrijk is</h3>
+					<p>Dit wordt veel gebruikt omdat er alsnog veel mensen zijn met oudere devices en browsers die niet alles ondersteunen. Als je een website niet Progressive Enhanced bouwt, is de kans groot dat hij het op deze devices slecht of niet eens doet.</p>
+					<p>De basis doet het altijd op elk device en de tweede stap bijna altijd ook en dat is het belangrijkst, zodat er altijd een soort basis-styling overblijft. Stap 3 wordt echt gebruikt om de UX te verbeteren.</p>
+				</div>
+
+				<div class="intro-mistake">
+					<h3>De fout die veel mensen maken</h3>
+					<p>Veel ontwikkelaars willen alles meteen perfect en mooi hebben, en bouwen alle lagen door elkaar. De core-functionaliteit raakt dan ondergesneeuwd en als één geavanceerd stuk faalt, doet vaak de hele pagina het niet meer.</p>
+					<p>De juiste volgorde is: zorg eerst dat de core-functionaliteit gewoon werkt, voeg dan pas de tweede laag (styling en breed ondersteund CSS) toe, en bouw de derde laag (animaties, JavaScript, moderne features) er pas bovenop als de eerste twee echt goed staan.</p>
+					<p>En eerlijk is eerlijk: deze fout maak ik zelf ook nog weleens. Het is verleidelijk om meteen met de mooie dingen te beginnen.</p>
+				</div>
+
+				<div class="intro-example">
+					<h3>Een praktijkvoorbeeld: video-streaming</h3>
+					<p>Denk aan Netflix of YouTube. Eén bronvideo wordt omgezet naar meerdere kwaliteitslagen, van een lage resolutie tot 4K.</p>
+					<p>Iedereen krijgt altijd een werkende basisvideo, ook op een trage verbinding. Is er meer bandbreedte? Dan schakelt de speler op naar een hogere kwaliteit. De ervaring wordt beter waar het kan, maar valt nooit helemaal weg. Precies progressive enhancement.</p>
+				</div>
 			</div>
 		</section>
 
@@ -193,10 +212,22 @@
 					<article class="step step-2">
 						<div class="step-num">2</div>
 						<p class="step-layer">+ CSS</p>
-						<h3>Horizontaal scrollen.</h3>
-						<p><code>scroll-snap-type</code> maakt er een carrousel van — swipe of scroll horizontaal.</p>
+						<h3>Twee CSS-aanpakken.</h3>
+						<p>Met alleen CSS heb je al keuze: een horizontale carrousel óf een gestijlde grid.</p>
+
+						<p class="option-label">Optie A — <code>scroll-snap-type</code></p>
 						<div class="demo-stage">
 							<ul class="carousel-css">
+								<li style="--bg:#fef3c7;">Slide 1</li>
+								<li style="--bg:#dbeafe;">Slide 2</li>
+								<li style="--bg:#fce7f3;">Slide 3</li>
+								<li style="--bg:#d1fae5;">Slide 4</li>
+							</ul>
+						</div>
+
+						<p class="option-label">Optie B — gestijlde grid</p>
+						<div class="demo-stage">
+							<ul class="grid-css">
 								<li style="--bg:#fef3c7;">Slide 1</li>
 								<li style="--bg:#dbeafe;">Slide 2</li>
 								<li style="--bg:#fce7f3;">Slide 3</li>
@@ -269,6 +300,14 @@
 						</div>
 					</article>
 				</div>
+			</div>
+		</section>
+		<section class="projects-section" id="projects">
+			<div class="section-inner">
+				<h2>5. Eigen projectjes met PE enhancements</h2>
+				<a href="https://proof-of-concept-cu3y.onrender.com/" target="_blank" rel="noopener">Project 1</a>
+				<a href="https://oncollaboration.dev.fdnd.nl/" target="_blank" rel="noopener">Project 2</a>
+				<a href="https://kyan-gijtenbeek.netlify.app/projects/informaat">Project 3</a>
 			</div>
 		</section>
 	</main>
