@@ -1,0 +1,14 @@
+[
+	{ "category": "books", "title": "The Pragmatic Programmer" },
+	{ "category": "books", "title": "Clean Code" },
+	{ "category": "books", "title": "Refactoring — Martin Fowler" },
+	{ "category": "books", "title": "Designing Data-Intensive Applications" },
+	{ "category": "movies", "title": "The Matrix" },
+	{ "category": "movies", "title": "Inception" },
+	{ "category": "movies", "title": "Arrival" },
+	{ "category": "movies", "title": "Blade Runner 2049" },
+	{ "category": "music", "title": "Discovery — Daft Punk" },
+	{ "category": "music", "title": "OK Computer — Radiohead" },
+	{ "category": "music", "title": "In Rainbows — Radiohead" },
+	{ "category": "music", "title": "Random Access Memories — Daft Punk" }
+]

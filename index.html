@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Progressive Enhancement</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<main>
+		<section class="hero" id="hero">
+			<h1>Progressive Enhancement</h1>
+			<p class="subtitle">Bouw voor iedereen. Verfijn voor de rest.</p>
+			<p class="scroll-hint">scroll ↓</p>
+		</section>
+
+		<section class="intro-section" id="intro">
+			<div class="section-inner">
+				<h2>Drie lagen van progressive enhancement</h2>
+				<div class="steps">
+					<article class="step step-1">
+						<div class="step-num">1</div>
+						<p class="step-layer">HTML-laag</p>
+						<h3>De basis werkt</h3>
+						<p>Inhoud is leesbaar en formulieren versturen — overal.</p>
+					</article>
+
+					<article class="step step-2">
+						<div class="step-num">2</div>
+						<p class="step-layer">Basis CSS-laag</p>
+						<h3>Het ziet er goed uit</h3>
+						<p>Layout, typografie en kleuren via breed ondersteund CSS.</p>
+					</article>
+
+					<article class="step step-3">
+						<div class="step-num">3</div>
+						<p class="step-layer">Geavanceerd CSS + JavaScript</p>
+						<h3>De verrijkte ervaring</h3>
+						<p>Animaties, live filtering en dark mode — alleen waar ondersteund.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="filter-section" id="filter">
+			<div class="section-inner">
+				<h2>1. Filter — laag voor laag opgebouwd</h2>
+
+				<div class="steps steps-demo">
+					<article class="step step-1">
+						<div class="step-num">1</div>
+						<p class="step-layer">Alleen HTML</p>
+						<h3>Het verstuurt.</h3>
+						<p>Standaard formulier zonder styling. Versturen herlaadt de pagina — een server zou de gefilterde lijst terugsturen.</p>
+						<div class="demo-stage bare">
+							<form method="get" action="#filter">
+								Categorie:
+								<select name="category">
+									<option value="all">Alle</option>
+									<option value="books">Boeken</option>
+									<option value="movies">Films</option>
+									<option value="music">Muziek</option>
+								</select>
+								<button type="submit">Toepassen</button>
+							</form>
+							<ul>
+								<li>The Pragmatic Programmer — boeken</li>
+								<li>Clean Code — boeken</li>
+								<li>The Matrix — films</li>
+								<li>Inception — films</li>
+								<li>Discovery — Daft Punk — muziek</li>
+							</ul>
+						</div>
+					</article>
+
+					<article class="step step-2">
+						<div class="step-num">2</div>
+						<p class="step-layer">+ CSS</p>
+						<h3>Het filtert.</h3>
+						<p><code>:has(option:checked)</code> leest de geselecteerde optie en verbergt items die niet matchen. Nog steeds geen JavaScript nodig.</p>
+						<div class="demo-stage css-only">
+							<form>
+								<label class="search-label">
+									<span>Categorie</span>
+									<select name="category">
+										<option value="all">Alle</option>
+										<option value="books">Boeken</option>
+										<option value="movies">Films</option>
+										<option value="music">Muziek</option>
+									</select>
+								</label>
+								<button type="submit">Toepassen</button>
+							</form>
+							<ul class="result-list">
+								<li data-category="books">The Pragmatic Programmer</li>
+								<li data-category="books">Clean Code</li>
+								<li data-category="movies">The Matrix</li>
+								<li data-category="movies">Inception</li>
+								<li data-category="music">Discovery — Daft Punk</li>
+							</ul>
+						</div>
+					</article>
+
+					<article class="step step-3">
+						<div class="step-num">3</div>
+						<p class="step-layer">+ JavaScript</p>
+						<h3>Het voelt direct.</h3>
+						<p>JS verwijdert de knop, voegt een tekstzoekveld toe en haalt extra data op met <code>fetch()</code>.</p>
+						<div class="demo-stage js-stage">
+							<form class="filter-form">
+								<label class="search-label">
+									<span>Categorie</span>
+									<select name="category">
+										<option value="all">Alle</option>
+										<option value="books">Boeken</option>
+										<option value="movies">Films</option>
+										<option value="music">Muziek</option>
+									</select>
+								</label>
+								<button type="submit">Toepassen</button>
+							</form>
+							<ul class="results result-list" id="results">
+								<li data-category="books">The Pragmatic Programmer</li>
+								<li data-category="books">Clean Code</li>
+								<li data-category="movies">The Matrix</li>
+								<li data-category="movies">Inception</li>
+								<li data-category="music">Discovery — Daft Punk</li>
+							</ul>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="corner-section" id="corner">
+			<div class="section-inner">
+				<h2>2. <code>corner-shape</code> — laag voor laag opgebouwd</h2>
+
+				<div class="steps steps-demo">
+					<article class="step step-1">
+						<div class="step-num">1</div>
+						<p class="step-layer">Alleen HTML</p>
+						<h3>Een vierkant.</h3>
+						<p>Een gewone <code>&lt;div&gt;</code> zonder styling — gewoon een blok inhoud.</p>
+						<div class="demo-stage shape-stage">
+							<div class="shape-box plain"></div>
+						</div>
+					</article>
+
+					<article class="step step-2">
+						<div class="step-num">2</div>
+						<p class="step-layer">+ CSS</p>
+						<h3>Vierkant naar rond.</h3>
+						<p>Een eenvoudige <code>border-radius</code> animatie — werkt in elke browser.</p>
+						<div class="demo-stage shape-stage">
+							<div class="shape-box basic-anim"></div>
+						</div>
+					</article>
+
+					<article class="step step-3">
+						<div class="step-num">3</div>
+						<p class="step-layer">+ corner-shape</p>
+						<h3>Vloeiend morphen.</h3>
+						<p>Via <code>@supports (corner-shape: squircle)</code> krijgen moderne browsers vloeiend morphen door meerdere vormen.</p>
+						<div class="demo-stage shape-stage">
+							<div class="card squircle"></div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="carousel-section" id="carousel">
+			<div class="section-inner">
+				<h2>3. Carrousel — laag voor laag opgebouwd</h2>
+
+				<div class="steps steps-demo">
+					<article class="step step-1">
+						<div class="step-num">1</div>
+						<p class="step-layer">Alleen HTML</p>
+						<h3>Een lijst.</h3>
+						<p>Een gewone <code>&lt;ul&gt;</code> — alle slides leesbaar onder elkaar.</p>
+						<div class="demo-stage bare">
+							<ul>
+								<li>Slide 1</li>
+								<li>Slide 2</li>
+								<li>Slide 3</li>
+								<li>Slide 4</li>
+							</ul>
+						</div>
+					</article>
+
+					<article class="step step-2">
+						<div class="step-num">2</div>
+						<p class="step-layer">+ CSS</p>
+						<h3>Horizontaal scrollen.</h3>
+						<p><code>scroll-snap-type</code> maakt er een carrousel van — swipe of scroll horizontaal.</p>
+						<div class="demo-stage">
+							<ul class="carousel-css">
+								<li style="--bg:#fef3c7;">Slide 1</li>
+								<li style="--bg:#dbeafe;">Slide 2</li>
+								<li style="--bg:#fce7f3;">Slide 3</li>
+								<li style="--bg:#d1fae5;">Slide 4</li>
+							</ul>
+						</div>
+					</article>
+
+					<article class="step step-3">
+						<div class="step-num">3</div>
+						<p class="step-layer">+ ::scroll-button</p>
+						<h3>Met knoppen.</h3>
+						<p>Moderne browsers krijgen <code>::scroll-button()</code> uit CSS. Oudere browsers JS-knoppen via <code>@supports</code>.</p>
+						<div class="demo-stage">
+							<div class="carousel-wrapper">
+								<ul class="carousel">
+									<li style="--bg:#fef3c7;">Slide 1</li>
+									<li style="--bg:#dbeafe;">Slide 2</li>
+									<li style="--bg:#fce7f3;">Slide 3</li>
+									<li style="--bg:#d1fae5;">Slide 4</li>
+								</ul>
+								<button type="button" class="js-prev" aria-label="Vorige">‹</button>
+								<button type="button" class="js-next" aria-label="Volgende">›</button>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="if-section" id="if">
+			<div class="section-inner">
+				<h2>4. CSS <code>if()</code> — laag voor laag opgebouwd</h2>
+
+				<div class="theme-toggle" role="radiogroup" aria-label="Thema">
+					<input type="radio" name="theme" id="theme-light" checked>
+					<label for="theme-light">Light</label>
+					<input type="radio" name="theme" id="theme-dark">
+					<label for="theme-dark">Dark</label>
+				</div>
+
+				<div class="steps steps-demo">
+					<article class="step step-1">
+						<div class="step-num">1</div>
+						<p class="step-layer">Alleen HTML</p>
+						<h3>Een tekstblok.</h3>
+						<p>Een gewone <code>&lt;div&gt;</code> met tekst — altijd leesbaar.</p>
+						<div class="demo-stage">
+							<div class="theme-box theme-bare">Hallo wereld</div>
+						</div>
+					</article>
+
+					<article class="step step-2">
+						<div class="step-num">2</div>
+						<p class="step-layer">+ CSS @media</p>
+						<h3>Reageert op dark mode.</h3>
+						<p>Met <code>@media (prefers-color-scheme: dark)</code> volgt het blok de systeemvoorkeur.</p>
+						<div class="demo-stage">
+							<div class="theme-box theme-media">Hallo wereld</div>
+						</div>
+					</article>
+
+					<article class="step step-3">
+						<div class="step-num">3</div>
+						<p class="step-layer">+ if()</p>
+						<h3>Eén declaratie.</h3>
+						<p><code>if()</code> regelt dark mode in één regel; <code>@supports</code> geeft oude browsers de @media fallback.</p>
+						<div class="demo-stage">
+							<div class="theme-box theme-if">Hallo wereld</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<script src="script.js"></script>
+</body>
+</html>

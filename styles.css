@@ -1,0 +1,663 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	line-height: 1.5;
+	color: #1a1a1a;
+}
+
+main {
+	min-height: 600vh;
+}
+
+section {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4rem 2rem;
+	scroll-snap-align: start;
+}
+
+.section-inner {
+	max-width: 900px;
+	width: 100%;
+}
+
+h1 {
+	font-size: clamp(2.5rem, 8vw, 6rem);
+	font-weight: 800;
+	letter-spacing: -0.03em;
+	margin-bottom: 1rem;
+}
+
+h2 {
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	margin-bottom: 2rem;
+	letter-spacing: -0.02em;
+}
+
+h3 {
+	font-size: 1.125rem;
+	margin-bottom: 0.5rem;
+}
+
+code {
+	font-family: "SF Mono", Monaco, Menlo, monospace;
+	background: rgba(0, 0, 0, 0.06);
+	padding: 0.1em 0.35em;
+	border-radius: 4px;
+	font-size: 0.9em;
+}
+
+.note {
+	margin-top: 1.5rem;
+	color: #555;
+	font-size: 0.95rem;
+}
+
+/* ───── Hero ───── */
+.hero {
+	background: linear-gradient(135deg, #0f172a, #1e293b);
+	color: white;
+	flex-direction: column;
+	text-align: center;
+}
+
+.subtitle {
+	font-size: 1.25rem;
+	opacity: 0.8;
+}
+
+.scroll-hint {
+	margin-top: 3rem;
+	opacity: 0.5;
+	font-size: 0.9rem;
+	animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(8px); }
+}
+
+/* ───── Reusable step cards (intro + filter visualization) ───── */
+.intro-section {
+	background: white;
+}
+
+.steps {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.25rem;
+	margin-top: 2rem;
+}
+
+.step {
+	background: #f8fafc;
+	border-radius: 12px;
+	padding: 1.5rem;
+	border-top: 4px solid;
+	display: flex;
+	flex-direction: column;
+}
+
+.step-1 { border-top-color: #ef4444; }
+.step-2 { border-top-color: #f59e0b; }
+.step-3 { border-top-color: #10b981; }
+
+.step-num {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	background: #0f172a;
+	color: white;
+	font-weight: 700;
+	font-size: 0.95rem;
+	margin-bottom: 0.75rem;
+}
+
+.step-layer {
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #777;
+	margin-bottom: 0.5rem;
+}
+
+.step h3 {
+	font-size: 1.15rem;
+	margin-bottom: 0.5rem;
+	letter-spacing: -0.01em;
+}
+
+.step p:last-child {
+	font-size: 0.9rem;
+	line-height: 1.55;
+	color: #444;
+}
+
+.steps-compact {
+	margin-top: 1.5rem;
+}
+
+.steps-compact .step {
+	padding: 1rem 1.25rem;
+	background: white;
+	border: 1px solid #eee;
+	border-top: 4px solid;
+}
+
+.steps-compact .step p:last-child {
+	font-size: 0.85rem;
+}
+
+@media (max-width: 720px) {
+	.steps {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ───── Section 1: Filter ───── */
+.filter-section {
+	background: #fafafa;
+}
+
+.filter-form {
+	margin-bottom: 2rem;
+	display: flex;
+	gap: 0.75rem;
+	align-items: stretch;
+}
+
+.search-label {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+.search-label span {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: #555;
+}
+
+.filter-form input[type="search"],
+.filter-form select {
+	width: 100%;
+	padding: 0.65rem 0.85rem;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	font-size: 1rem;
+	font-family: inherit;
+	background: white;
+}
+
+.filter-form input[type="search"]:focus,
+.filter-form select:focus {
+	outline: 2px solid #0f172a;
+	outline-offset: 1px;
+}
+
+.filter-form button {
+	align-self: end;
+	background: #0f172a;
+	color: white;
+	border: 0;
+	padding: 0.65rem 1.25rem;
+	border-radius: 6px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.filter-form button:hover {
+	background: #1e293b;
+}
+
+.results {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 0.75rem;
+}
+
+.results li {
+	background: white;
+	padding: 0.85rem 1rem;
+	border-radius: 6px;
+	border: 1px solid #eee;
+}
+
+.results li.hidden {
+	display: none;
+}
+
+/* No-JS filter via :has() — applies to step 2 (css-only) and step 3 (js-stage).
+   Step 1 (bare) intentionally has no filtering — it would rely on a server. */
+.demo-stage:has(option[value="books"]:checked) .result-list li:not([data-category="books"]),
+.demo-stage:has(option[value="movies"]:checked) .result-list li:not([data-category="movies"]),
+.demo-stage:has(option[value="music"]:checked) .result-list li:not([data-category="music"]) {
+	display: none;
+}
+
+/* Demo stages inside the filter step cards */
+.demo-stage {
+	margin-top: 1rem;
+	padding: 0.75rem;
+	border-radius: 8px;
+	background: white;
+	border: 1px dashed #ddd;
+}
+
+.demo-stage form {
+	margin-bottom: 0.75rem;
+}
+
+.demo-stage .result-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+.demo-stage .result-list li {
+	background: #f8fafc;
+	padding: 0.45rem 0.65rem;
+	border-radius: 4px;
+	font-size: 0.85rem;
+}
+
+/* Step 1 — bare HTML, browser default styling on form and list */
+.demo-stage.bare {
+	background: #fff;
+	border-style: solid;
+	border-color: #e5e7eb;
+	font-family: serif;
+}
+
+.demo-stage.bare ul {
+	list-style: disc;
+	padding-left: 1.25rem;
+	margin: 0;
+	font-size: 0.85rem;
+}
+
+.demo-stage.bare button,
+.demo-stage.bare select {
+	font-family: inherit;
+}
+
+/* ───── Section 2: corner-shape ───── */
+.corner-section {
+	background: #f5f0ff;
+}
+
+/* Shared demo stage for the 3-layer corner section */
+.shape-stage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	min-height: 140px;
+}
+
+/* Step 1: plain box, no animation */
+.shape-box {
+	width: 90px;
+	height: 90px;
+	background: white;
+	border: 2px solid #7c3aed;
+}
+
+/* Step 2: simple border-radius animation — works everywhere */
+.shape-box.basic-anim {
+	animation: simple-morph 2s ease-in-out infinite;
+}
+
+@keyframes simple-morph {
+	0%, 100% { border-radius: 0; }
+	50%      { border-radius: 28px; }
+}
+
+/* Step 3: the single corner-shape card */
+.card {
+	background: white;
+	border: 2px solid #7c3aed;
+	width: 90px;
+	height: 90px;
+	transition: scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+	            box-shadow 0.35s ease,
+	            background 0.35s ease;
+	animation: simple-morph 2s ease-in-out infinite;
+}
+
+/* Moderne browsers (met corner-shape) krijgen vloeiend morphen */
+@supports (corner-shape: squircle) {
+	.card {
+		animation: shape-morph 4s ease-in-out infinite;
+	}
+
+	.squircle { corner-shape: squircle; }
+	.scoop    { corner-shape: scoop; }
+	.bevel    { corner-shape: bevel; }
+	.notch    { corner-shape: notch; }
+}
+
+/* Extreme corner-variaties — alleen de vormen, geen rotatie of schaal */
+@keyframes shape-morph {
+	0%    { border-radius: 28px; }
+	12.5% { border-radius: 80% 20% 20% 80% / 20% 80% 80% 20%; }
+	25%   { border-radius: 50%; }
+	37.5% { border-radius: 10% 90% 10% 90% / 90% 10% 90% 10%; }
+	50%   { border-radius: 90% 10% 90% 10% / 10% 90% 10% 90%; }
+	62.5% { border-radius: 30% 70% 70% 30% / 70% 30% 30% 70%; }
+	75%   { border-radius: 0; }
+	87.5% { border-radius: 50% 0 50% 0 / 0 50% 0 50%; }
+	100%  { border-radius: 28px; }
+}
+
+@keyframes card-float {
+	0%, 100% { translate: 0 0; }
+	50%      { translate: 0 -8px; }
+}
+
+.card:hover {
+	scale: 1.08;
+	background: #faf5ff;
+	box-shadow: 0 14px 32px rgba(124, 58, 237, 0.3);
+	animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.card {
+		animation: none;
+		border-radius: 28px;
+	}
+}
+
+/* ───── Section 3: Carousel ───── */
+.carousel-section {
+	background: #fff7ed;
+}
+
+.carousel-wrapper {
+	position: relative;
+	margin: 0;
+}
+
+/* Step 2 demo: scroll-snap carousel met zichtbare scrollbar — de scrollbar
+   maakt duidelijk dat de gebruiker horizontaal kan scrollen (geen knoppen). */
+.carousel-css {
+	list-style: none;
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	border-radius: 8px;
+	scrollbar-width: thin;
+	scrollbar-color: #94a3b8 #f1f5f9;
+	padding: 0 0 0.25rem;
+	margin: 0;
+}
+
+.carousel-css::-webkit-scrollbar {
+	height: 8px;
+}
+
+.carousel-css::-webkit-scrollbar-track {
+	background: #f1f5f9;
+	border-radius: 4px;
+}
+
+.carousel-css::-webkit-scrollbar-thumb {
+	background: #94a3b8;
+	border-radius: 4px;
+}
+
+.carousel-css li {
+	flex: 0 0 100%;
+	scroll-snap-align: center;
+	background: var(--bg, #eee);
+	padding: 1.5rem 1rem;
+	min-height: 90px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+}
+
+/* Step 3: full carousel with scroll-buttons */
+.carousel {
+	list-style: none;
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	scroll-marker-group: after;
+	border-radius: 8px;
+	scrollbar-width: none;
+	padding: 0;
+	margin: 0;
+}
+
+.carousel::-webkit-scrollbar {
+	display: none;
+}
+
+.carousel li {
+	flex: 0 0 100%;
+	scroll-snap-align: center;
+	background: var(--bg, #eee);
+	padding: 1.5rem 1rem;
+	min-height: 90px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+}
+
+/* Pure-CSS scroll buttons — absolutely positioned just outside the carousel */
+.carousel::scroll-button(left),
+.carousel::scroll-button(right) {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 2.5rem;
+	height: 2.5rem;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(15, 23, 42, 0.85);
+	color: white;
+	font-size: 1.5rem;
+	line-height: 1;
+	cursor: pointer;
+	z-index: 2;
+}
+
+.carousel::scroll-button(left) {
+	content: '‹';
+	left: 0.5rem;         /* binnen de carrousel — past in de step-kaart */
+}
+
+.carousel::scroll-button(right) {
+	content: '›';
+	right: 0.5rem;
+}
+
+.carousel::scroll-button(left):disabled,
+.carousel::scroll-button(right):disabled {
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+
+/* Scroll markers (dots) — generated by CSS, no markup needed */
+.carousel::scroll-marker-group {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-top: 1rem;
+}
+
+.carousel li::scroll-marker {
+	content: '';
+	width: 0.75rem;
+	height: 0.75rem;
+	border-radius: 50%;
+	background: white;
+	border: 1px solid #ccc;
+	cursor: pointer;
+}
+
+.carousel li::scroll-marker:target-current {
+	background: #0f172a;
+	border-color: #0f172a;
+}
+
+/* JS fallback buttons — visible only when ::scroll-button isn't supported */
+.js-prev,
+.js-next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+	border: 0;
+	background: rgba(15, 23, 42, 0.85);
+	color: white;
+	font-size: 1.5rem;
+	line-height: 1;
+	cursor: pointer;
+	z-index: 2;
+}
+
+.js-prev { left: 0.5rem; }
+.js-next { right: 0.5rem; }
+
+@supports selector(::scroll-button(left)) {
+	.js-prev,
+	.js-next { display: none; }
+}
+
+/* ───── Section 4: if() ───── */
+.if-section {
+	background: #ecfdf5;
+}
+
+/* CSS-only thema-toggle — verbergt de radio's, gebruikt :checked + :has() */
+.theme-toggle {
+	display: inline-flex;
+	background: #f1f5f9;
+	border-radius: 999px;
+	padding: 4px;
+	margin-bottom: 1.5rem;
+	gap: 2px;
+}
+
+.theme-toggle input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.theme-toggle label {
+	padding: 0.45rem 1.1rem;
+	border-radius: 999px;
+	cursor: pointer;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: #555;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle input:checked + label {
+	background: #0f172a;
+	color: white;
+}
+
+/* Toggle overschrijft de theme-boxes in stap 2 en 3.
+   Stap 1 (.theme-bare) blijft expres onveranderd — geen dark-mode support. */
+.if-section:has(#theme-dark:checked) .theme-media,
+.if-section:has(#theme-dark:checked) .theme-if {
+	background: #1a1a1a;
+	color: #f5f5f5;
+}
+
+.if-section:has(#theme-light:checked) .theme-media,
+.if-section:has(#theme-light:checked) .theme-if {
+	background: #ffffff;
+	color: #1a1a1a;
+}
+
+.theme-box {
+	padding: 1.5rem 1rem;
+	border-radius: 8px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	text-align: center;
+	font-weight: 600;
+	min-height: 90px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Step 1: geen thema, altijd dezelfde kleuren */
+.theme-bare {
+	background: #ffffff;
+	color: #1a1a1a;
+}
+
+/* Step 2: @media query — reageert op systeem dark mode */
+.theme-media {
+	background: #ffffff;
+	color: #1a1a1a;
+}
+
+@media (prefers-color-scheme: dark) {
+	.theme-media {
+		background: #1a1a1a;
+		color: #f5f5f5;
+	}
+}
+
+/* Step 3: if() in één declaratie, met @supports fallback voor oudere browsers */
+.theme-if {
+	background: if(
+		media(prefers-color-scheme: dark): #1a1a1a;
+		else: #ffffff
+	);
+	color: if(
+		media(prefers-color-scheme: dark): #f5f5f5;
+		else: #1a1a1a
+	);
+}
+
+@supports not (background: if(media(prefers-color-scheme: dark): red; else: blue)) {
+	@media (prefers-color-scheme: dark) {
+		.theme-if {
+			background: #1a1a1a;
+			color: #f5f5f5;
+		}
+	}
+	@media (prefers-color-scheme: light) {
+		.theme-if {
+			background: #ffffff;
+			color: #1a1a1a;
+		}
+	}
+}
